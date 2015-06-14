@@ -5,9 +5,16 @@ import React from 'react';
 
 const computeClass = (styles, tag, attrs) => {
   const tagClass = `TAG__${tag}`;
-  return styles[tagClass] ?
-    styles[tagClass] + ' ' + styles.TAG__ALL + (attrs && attrs.className ? ' ' + attrs.className : '') :
-    attrs && attrs.className;
+
+  return (
+
+    (styles.TAG__ALL && styles.TAG__ALL + ' ' || '') +
+
+    (styles[tagClass] && styles[tagClass] + ' ' || '') +
+
+    (attrs && attrs.className && attrs.className || '')
+
+  ).trim();
 };
 
 const lowercaseRegExp = /[a-z]/;
